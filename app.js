@@ -2,17 +2,23 @@ const express = require('express')
 const app = express()
 var exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+// INITIALIZE BODY-PARSER AND ADD IT TO APP
+const bodyParser = require('body-parser');
 
+// The following line must appear AFTER const app = express() and before routes!
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //  initialize mongoose in app.js and connect to our database that we'll name after our app.
-mongoose.connect('mongodb://localhost/rotten-potatoes', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useMongoClient: true });
 
 // adding a model to our review
 const Review = mongoose.model('Review', {
-  title: String
+  title: String,
+  description: String,
+  movieTitle: String
 });
 
 // INDEX
@@ -22,17 +28,23 @@ app.get('/', (req, res) => {
     .then(reviews => {
       res.render('reviews-index', { reviews: reviews });
     })
+    // if not found
     .catch(err => {
       console.log(err);
     })
 })
 
-//fulfilling the promise - code that execudes when the review is found in the database
-// Reviews.find().then((review) => {
-//
-//     Reviews.find().then((review) => { ... }).catch((err) => { ...executed if the promise is rejected... })
-//
-// })
+//NEW
+app.get('/reviews/new', (req, res) => {
+  res.render('reviews-new', {});
+})
+
+// CREATE
+app.post('/reviews', (req, res) => {
+  console.log(req.body);
+  // res.render('reviews-new', {});
+})
+
 
 // OUR MOCK ARRAY OF PROJECTS
 // let reviews = [
