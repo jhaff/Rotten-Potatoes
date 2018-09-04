@@ -42,12 +42,23 @@ app.get('/reviews/new', (req, res) => {
 
 // CREATE
 app.post('/reviews', (req, res) => {
-  console.log(req.body);
-  res.render('reviews-new', {});
+  Review.create(req.body).then((review) => {
+    console.log(review)
+    res.redirect(`/reviews/${review._id}`) // Redirect to reviews/:id
+  }).catch((err) => {
+    console.log(err.message)
+  })
+})
+// SHOW
+app.get('/reviews/:id', (req, res) => {
+  Review.findById(req.params.id).then((review) => {
+    res.render('reviews-show', { review: review })
+  }).catch((err) => {
+    console.log(err.message);
+  })
 })
 
-
-// OUR MOCK ARRAY OF PROJECTS
+//OUR MOCK ARRAY OF PROJECTS
 // let reviews = [
 //   { title: "Incredible Review" },
 //   { title: "Next Review" }

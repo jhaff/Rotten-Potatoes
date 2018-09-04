@@ -5,6 +5,6 @@
 
 <!-- loop over our array of reviews and display each one's title. -->
 {{#each reviews}}
-  <h2>{{this.title}}</h2>
+  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
   <small>{{this.movieTitle}}</small>
 {{/each}}
