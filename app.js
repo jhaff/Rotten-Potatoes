@@ -42,7 +42,7 @@ app.get('/reviews/new', (req, res) => {
 // CREATE
 app.post('/reviews', (req, res) => {
   console.log(req.body);
-  // res.render('reviews-new', {});
+  res.render('reviews-new', {});
 })
 
 
