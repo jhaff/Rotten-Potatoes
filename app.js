@@ -18,7 +18,8 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useMongoClient: 
 const Review = mongoose.model('Review', {
   title: String,
   description: String,
-  movieTitle: String
+  movieTitle: String,
+  movieRating: String,
 });
 
 // INDEX
