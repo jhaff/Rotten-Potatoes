@@ -82,6 +82,16 @@ app.put('/reviews/:id', (req, res) => {
     })
 })
 
+// DELETE
+app.delete('/reviews/:id', function (req, res) {
+  console.log("DELETE review")
+  Review.findByIdAndRemove(req.params.id).then((review) => {
+    res.redirect('/');
+  }).catch((err) => {
+    console.log(err.message);
+  })
+})
+
 //OUR MOCK ARRAY OF PROJECTS
 // let reviews = [
 //   { title: "Incredible Review" },
