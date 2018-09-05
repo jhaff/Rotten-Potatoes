@@ -3,8 +3,13 @@
 
 <a href="/reviews/new">New Review</a>
 
-<!-- loop over our array of reviews and display each one's title. -->
-{{#each reviews}}
-  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-  <small>{{this.movieTitle}}</small>
-{{/each}}
+<div class="row">
+    <!-- loop over our array of reviews and display each one's title. -->
+
+  {{#each reviews}}
+    <div class="col-sm-3">
+      <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+      <small>{{this.movieTitle}}</small>
+    </div>
+  {{/each}}
+</div>
