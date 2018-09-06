@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const Review = require('../models/review.js');
 const express = require('express');
+const Comment = require('../models/comment.js')
 
-mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
+    useMongoClient: true
+});
 
 
 module.exports = function(app) {
@@ -52,14 +55,23 @@ module.exports = function(app) {
 
     // SHOW
     app.get('/reviews/:id', (req, res) => {
-        Review.findById(req.params.id).then((review) => {
-            res.render('reviews-show', {
-                review: review
+        // find review
+        Review.findById(req.params.id).then(review => {
+            // fetch its comments
+            Comment.find({
+                reviewId: req.params.id
+            }).then(comments => {
+                // respond with the template with both values
+                res.render('reviews-show', {
+                    review: review,
+                    comments: comments
+                })
             })
         }).catch((err) => {
-            console.log(err.message);
-        })
-    })
+            // catch errors
+            console.log(err.message)
+        });
+    });
 
     // EDIT
     app.get('/reviews/:id/edit', function(req, res) {

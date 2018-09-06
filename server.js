@@ -1,5 +1,6 @@
 const express = require('express')
 const methodOverride = require('method-override')
+const Comment = require('./models/comment')
 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
@@ -21,6 +22,7 @@ app.set('view engine', 'handlebars');
 //  initialize mongoose in app.js and connect to our database that we'll name after our app.
 mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useMongoClient: true });
 
+const comments = require('./controllers/reviews.js')
 const reviews = require('./controllers/reviews.js')
 reviews(app);
 
