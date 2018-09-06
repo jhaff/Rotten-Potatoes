@@ -4,6 +4,7 @@ const Comment = require('./models/comment')
 const commentsController = require('./controllers/comments.js')
 const reviews = require('./controllers/reviews.js')
 const mongoose = require('mongoose');
+const port = process.env.PORT || 3000;
 
 const app = express()
 var exphbs = require('express-handlebars');
@@ -32,6 +33,6 @@ reviews(app);
 //   { title: "Next Review" }
 // ]
 
-module.exports = app.listen(3000, () => {
+module.exports = app.listen(port, () => {
   console.log('App listening on port 3000!')
 })
