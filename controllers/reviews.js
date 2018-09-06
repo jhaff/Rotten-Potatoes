@@ -12,6 +12,7 @@ module.exports = function(app) {
 
     //root route
     app.get('/', (req, res) => {
+        console.log("did the redirect work????!!??!?!?!?!?!?!?")
         Review.find()
             .then(reviews => {
                 res.render('reviews-index', {

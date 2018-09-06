@@ -1,19 +1,23 @@
 // comments.js
-
-var Comment = require("../models/comment.js");
+const express = require('express');
+const app = express();
+const Comment = require("../models/comment.js");
 const Review = require('../models/review.js');
 
 
-module.exports = function(app) {
-    // CREATE Comment
-    app.post('/reviews/comments', (req, res) => {
-        console.log("test");
 
+
+// CREATE Comment
+app.post('/reviews/comments', (req, res) => {
+    console.log("test");
+
+
+  Comment.create(req.body).then(comment => {
       console.log(comment);
-      Comment.create(req.body).then(comment => {
-        res.redirect(`/reviews/'${comment.reviewId}`)
-      }).catch((err) => {
-        console.log(err.message)
-      })
-    })
-}
+    res.redirect(`/reviews/${comment.reviewId}`);
+  }).catch((err) => {
+    console.log(err.message)
+  })
+});
+
+module.exports = app;
