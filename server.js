@@ -24,14 +24,7 @@ app.set('view engine', 'handlebars');
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/rotten-potatoes';
 mongoose.connect(mongoUri, { useNewUrlParser: true });
 
-
 reviews(app);
-
-//OUR MOCK ARRAY OF PROJECTS
-// let reviews = [
-//   { title: "Incredible Review" },
-//   { title: "Next Review" }
-// ]
 
 module.exports = app.listen(port, () => {
   console.log('App listening on port 3000!')

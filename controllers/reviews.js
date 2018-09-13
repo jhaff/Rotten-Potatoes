@@ -7,7 +7,6 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     useMongoClient: true
 });
 
-
 module.exports = function(app) {
 
     //root route

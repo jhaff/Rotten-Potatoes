@@ -9,8 +9,6 @@ const Review = require('../models/review');
 chai.use(chaiHttp);
 chai.request('http://localhost:3000')
 
-chai.use(chaiHttp);
-
 const sampleReview = {
     "title": "Super Sweet Review",
     "movie-title": "La La Land",
