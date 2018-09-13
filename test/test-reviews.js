@@ -6,8 +6,8 @@ const server = require('../server');
 const should = chai.should();
 const Review = require('../models/review');
 
-chai.use(chaiHttp);
 chai.request('http://localhost:3000')
+chai.use(chaiHttp);
 
 const sampleReview = {
     "title": "Super Sweet Review",
