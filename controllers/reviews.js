@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Review = require('../models/review.js');
 const express = require('express');
+const app = express();
 const Comment = require('../models/comment.js')
 
 mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     useMongoClient: true
 });
 
-module.exports = function(app) {
 
     // //root route
     // app.get('/', (req, res) => {
@@ -103,4 +103,4 @@ module.exports = function(app) {
         })
     })
 
-}
+module.exports = app;
