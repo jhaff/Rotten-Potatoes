@@ -9,34 +9,34 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
 
 module.exports = function(app) {
 
-    //root route
-    app.get('/', (req, res) => {
-        console.log("did the redirect work????!!??!?!?!?!?!?!?")
-        Review.find()
-            .then(reviews => {
-                res.render('reviews-index', {
-                    reviews: reviews
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    });
-
-    // INDEX
-    app.get('/', (req, res) => {
-        //start of the promise
-        Review.find()
-            .then(reviews => {
-                res.render('reviews-index', {
-                    reviews: reviews
-                });
-            })
-            // if not found
-            .catch(err => {
-                console.log(err);
-            })
-    })
+    // //root route
+    // app.get('/', (req, res) => {
+    //     console.log("did the redirect work????!!??!?!?!?!?!?!?")
+    //     Review.find()
+    //         .then(reviews => {
+    //             res.render('reviews-index', {
+    //                 reviews: reviews
+    //             });
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    // });
+    //
+    // // INDEX
+    // app.get('/', (req, res) => {
+    //     //start of the promise
+    //     Review.find()
+    //         .then(reviews => {
+    //             res.render('reviews-index', {
+    //                 reviews: reviews
+    //             });
+    //         })
+    //         // if not found
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // })
 
     //NEW
     app.get('/reviews/new', (req, res) => {

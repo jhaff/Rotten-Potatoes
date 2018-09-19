@@ -3,6 +3,7 @@ const methodOverride = require('method-override')
 const Comment = require('./models/comment')
 const commentsController = require('./controllers/comments.js')
 const reviews = require('./controllers/reviews.js')
+const movies = require('./controllers/movies.js')
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
 
