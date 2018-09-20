@@ -76,7 +76,7 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     });
 
     // EDIT
-    app.get('/reviews/:id/edit', function(req, res) {
+    app.get('/movies/:movieId/reviews/:id/edit', function(req, res) {
         Review.findById(req.params.id, function(err, review) {
             res.render('reviews-edit', {
                 review: review
@@ -85,7 +85,7 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     })
 
     // UPDATE
-    app.put('/reviews/:id', (req, res) => {
+    app.put('/movies/:movieId/reviews/:id', (req, res) => {
         Review.findByIdAndUpdate(req.params.id, req.body)
             .then(review => {
                 res.redirect(`/reviews/${review._id}`)
@@ -96,10 +96,10 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     })
 
     // DELETE
-    app.delete('/reviews/:id', function(req, res) {
+    app.delete('/movies/:movieId/reviews/:id', function(req, res) {
         console.log("DELETE review")
         Review.findByIdAndRemove(req.params.id).then((review) => {
-            res.redirect('/');
+            res.redirect('/movies/${review.movieId}');
         }).catch((err) => {
             console.log(err.message);
         })
