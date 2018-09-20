@@ -88,7 +88,7 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     app.put('/movies/:movieId/reviews/:id', (req, res) => {
         Review.findByIdAndUpdate(req.params.id, req.body)
             .then(review => {
-                res.redirect(`/reviews/${review._id}`)
+                res.redirect(`/movies/${req.params.movieId}`);
             })
             .catch(err => {
                 console.log(err.message)
