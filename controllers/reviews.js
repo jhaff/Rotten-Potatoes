@@ -49,14 +49,14 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
    Review.create(req.body)
      .then(review => {
        console.log(review)
-       res.redirect(`/movies/${review.movieId}`);
+       res.redirect(`/movies/${req.params.movieId}/reviews/${review._id}`);
      }).catch(error => {
        console.log(error.message);
      });
  });
 
     // SHOW
-    app.get('/reviews/:id', (req, res) => {
+    app.get('/movies/:movieId/reviews/:id', (req, res) => {
         // find review
         Review.findById(req.params.id).then(review => {
             // fetch its comments
