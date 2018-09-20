@@ -99,7 +99,7 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     app.delete('/movies/:movieId/reviews/:id', function(req, res) {
         console.log("DELETE review")
         Review.findByIdAndRemove(req.params.id).then((review) => {
-            res.redirect('/movies/${review.movieId}');
+            res.redirect(`/movies/${req.params.movieId}`);
         }).catch((err) => {
             console.log(err.message);
         })
