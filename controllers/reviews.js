@@ -39,22 +39,21 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
     // })
 
     //NEW
-    app.get('/movies/:id/reviews/new', (req, res) => {
-        // Review.find({movieId: req.params.id}).then(movie) => {
-        res.render('reviews-new', { movieId: req.params.id});
-    // }
-    });
+    app.get('/movies/:movieId/reviews/new', (req, res) => {
+        res.render('reviews-new', { movieId: req.params.movieId });
+    })
 
     // CREATE
-    app.post('/movies/:id/reviews', (req, res) => {
-    console.log(`CREATE review`);
-    Review.create(req.body)
-        .then((review) => {
-            res.redirect(`reviews/${review._id}`);
-        }).catch((err) => {
-            console.log(err.message);
-        });
-});
+    app.post('/movies/:movieId/reviews', (req, res) => {
+   console.log(req.body);
+   Review.create(req.body)
+     .then(review => {
+       console.log(review)
+       res.redirect(`/movies/${review.movieId}`);
+     }).catch(error => {
+       console.log(error.message);
+     });
+ });
 
     // SHOW
     app.get('/reviews/:id', (req, res) => {
