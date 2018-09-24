@@ -45,15 +45,15 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', {
 
     // CREATE
     app.post('/movies/:movieId/reviews', (req, res) => {
-   console.log(req.body);
-   Review.create(req.body)
-     .then(review => {
-       console.log(review)
-       res.redirect(`/movies/${req.params.movieId}/reviews/${review._id}`);
-     }).catch(error => {
-       console.log(error.message);
-     });
- });
+        console.log(req.body);
+        Review.create(req.body)
+            .then(review => {
+                console.log(review)
+                res.redirect(`/movies/${req.params.movieId}/reviews/${review._id}`);
+            }).catch(error => {
+                console.log(error.message);
+            });
+    });
 
     // SHOW
     app.get('/movies/:movieId/reviews/:id', (req, res) => {
