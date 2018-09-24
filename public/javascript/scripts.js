@@ -43,8 +43,6 @@ window.onload = function() {
             });
     });
 
-
-
     document.querySelector('.delete-comment').addEventListener('click', (e) => {
         console.log('click!');
         // let comment =
