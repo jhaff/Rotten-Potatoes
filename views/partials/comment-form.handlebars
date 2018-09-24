@@ -1,7 +1,10 @@
 <!-- views/partials/comment-form.handlebars -->
 
-<form action="/reviews/comments" method="POST">
+<form action="#" id="newComment">
     <input type="hidden" value="{{review._id}}" name="reviewId">
+
+    <input type="hidden" value="{{review.movieId}}" name="movieId">
+
     <fieldset>
         <legend>Add a Comment</legend>
         <!-- TITLE -->
