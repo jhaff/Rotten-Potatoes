@@ -1,10 +1,9 @@
-
 let currentUrl = new URL(window.location.href);
 let currentPath = currentUrl.pathname.split('/');
 let movieId = currentPath[2];
 let reviewId = currentPath[4];
 
-window.onload = function () {
+window.onload = function() {
 
     // we get the form from the handlebard/html form
     let newCommentForm = document.getElementById("newComment");
@@ -17,7 +16,7 @@ window.onload = function () {
 
         // use axios to initialize a post request and send the form data
         axios.post(`/movies/${comment.movieId}/reviews/comments`, comment)
-            .then(function (response) {
+            .then(function(response) {
 
                 // we get the comment on a JSON format from the response
                 let newComment = response.data.comment;
@@ -25,7 +24,7 @@ window.onload = function () {
 
 
                 $('#comments').prepend(
-                `
+                    `
                     <div class="card" id="${response.data.comment._id}">
                         <div class="card-block">
                         <p class="card-text">${newComment.content}</p>
@@ -38,28 +37,28 @@ window.onload = function () {
                 `
                 );
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
                 alert('There was a problem saving your comment. Please try again.')
             });
-        });
-    }
+    });
 
 
-//     document.querySelector('.delete-comment').addEventListener('click', (e) => {
-//         console.log('click!');
-//         // let comment =
-//         //  $(newCommentForm).serialize();
-//         let commentId = $(e.target).attr('data-comment-id');
-//         // let movieId = e.target.getAttribute('data-movie-id');
-//         axios.delete(`/movies/${movieId}/reviews/comments/${commentId}`)
-//             .then(response => {
-//                 console.log(response);
-//                 $(`#${commentId}`).remove();
-//             })
-//             .catch(error => {
-//                 console.log(error);
-//                 alert("couldn't delete")
-//             });
-//     });
-// }
+
+    document.querySelector('.delete-comment').addEventListener('click', (e) => {
+        console.log('click!');
+        // let comment =
+        //  $(newCommentForm).serialize();
+        let commentId = $(e.target).attr('data-comment-id');
+        // let movieId = e.target.getAttribute('data-movie-id');
+        axios.delete(`/movies/${movieId}/reviews/comments/${commentId}`)
+            .then(response => {
+                console.log(response);
+                $(`#${commentId}`).remove();
+            })
+            .catch(error => {
+                console.log(error);
+                alert("fuck");
+            });
+    });
+}
