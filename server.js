@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'));
-
+app.use('/public', express.static('./public'))
 app.use(commentsController);
 app.use(reviewsController);
 app.use(moviesController);
