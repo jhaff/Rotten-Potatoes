@@ -3,6 +3,14 @@ let currentPath = currentUrl.pathname.split('/');
 let movieId = currentPath[2];
 let reviewId = currentPath[4];
 
+function deleteReview(index) {
+    let reviewId = document.getElementById("deleteReview" + index).getAttribute("review-id");
+    axios.delete('/admin/reviews/' + reviewId).then(function(response) {
+        console.log(response);
+        document.getElementById("admin-" + reviewId).remove();
+    });
+}
+
 window.onload = function() {
 
     // we get the form from the handlebard/html form
@@ -59,4 +67,8 @@ window.onload = function() {
                 alert("fuck");
             });
     });
+
+
+
+
 }

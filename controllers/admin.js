@@ -13,4 +13,16 @@ const Review = require('../models/review.js');
       });
   });
 
+  app.delete('/admin/reviews/:id', function(req, res) {
+         Review.findByIdAndRemove(req.params.id).then((review) => {
+             res.status(200).send({
+                 review: review
+             });
+         }).catch((err) => {
+             res.status(400).send({
+                 err: err
+             })
+         })
+     });
+
 module.exports = app;
