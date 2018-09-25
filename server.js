@@ -4,6 +4,7 @@ const Comment = require('./models/comment')
 const commentsController = require('./controllers/comments.js')
 const reviewsController = require('./controllers/reviews.js')
 const moviesController = require('./controllers/movies.js')
+const adminController = require('./controllers/admin.js')
 const mongoose = require('mongoose');
 const port = process.env.PORT || 3000;
 const app = express();
@@ -24,6 +25,7 @@ app.use('/public', express.static('./public'))
 app.use(commentsController);
 app.use(reviewsController);
 app.use(moviesController);
+app.use(adminController);
 
 
 
