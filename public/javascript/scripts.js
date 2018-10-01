@@ -19,7 +19,7 @@ window.onload = function() {
 
         e.preventDefault();
 
-        // DONT USE serializeArray(), it returns an array but we want JSON. Using this instead
+        // Serialize the array in JSON
         let comment = $(newCommentForm).serialize();
 
         // use axios to initialize a post request and send the form data
@@ -29,7 +29,6 @@ window.onload = function() {
                 // we get the comment on a JSON format from the response
                 let newComment = response.data.comment;
                 newCommentForm.reset();
-
 
                 $('#comments').prepend(
                     `
@@ -52,11 +51,9 @@ window.onload = function() {
     });
 
     document.querySelector('.delete-comment').addEventListener('click', (e) => {
-        console.log('click!');
-        // let comment =
-        //  $(newCommentForm).serialize();
+        
         let commentId = $(e.target).attr('data-comment-id');
-        // let movieId = e.target.getAttribute('data-movie-id');
+       
         axios.delete(`/movies/${movieId}/reviews/comments/${commentId}`)
             .then(response => {
                 console.log(response);
@@ -64,8 +61,7 @@ window.onload = function() {
             })
             .catch(error => {
                 console.log(error);
-                alert("fuck");
+                alert("DELETE FAILED");
             });
     });
-
 }
